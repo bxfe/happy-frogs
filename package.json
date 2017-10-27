@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --inline --hot",
     "build": "webpack --progress"
   },
@@ -18,9 +17,6 @@
     "url": "https://github.com/bxfe/happy-frogs/issues"
   },
   "homepage": "https://github.com/bxfe/happy-frogs#readme",
-  "dependencies": {
-    "vue": "^2.5.2"
-  },
   "devDependencies": {
     "api-ai-javascript": "^2.0.0-beta.21",
     "babel-core": "^6.26.0",
@@ -28,6 +24,7 @@
     "babel-preset-env": "^1.6.1",
     "css-loader": "^0.28.7",
     "extract-text-webpack-plugin": "^3.0.2",
+    "vue": "^2.5.2",
     "vue-loader": "^13.3.0",
     "vue-template-compiler": "^2.5.2",
     "webpack": "^3.8.1",

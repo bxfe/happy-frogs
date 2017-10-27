@@ -23,6 +23,14 @@ export default {
 </script>
 
 <style>
+@keyframes expand {
+  from {
+    font-size: 0;
+  }
+  to {
+    font-size: 16px;
+  }
+}
 .message-box {
   flex-grow: 1;
   display: flex;
@@ -31,6 +39,7 @@ export default {
 }
 .message-box .line {
   width: 100%;
+  animation: expand 0.3s ease;
 }
 .message-box .line.user {
   text-align: right;
@@ -38,7 +47,7 @@ export default {
 .message-box .wrapper {
   display: inline-block;
   max-width: 50%;
-  padding: 1em;
+  padding: 0.8em;
   box-sizing: border-box;
 }
 .message-box .content {

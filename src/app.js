@@ -17,14 +17,6 @@ new Vue({
         type: 'frog',
         content: '你好呀，我是小蛙',
       },
-      {
-        type: 'user',
-        content: '你好呀，我是小蛙',
-      },
-      {
-        type: 'frog',
-        content: '你好呀，我是小蛙',
-      },
     ],
     client: new ApiAiClient({
       accessToken: 'b6111438a5f54e6eaa70e72aaab8d380',

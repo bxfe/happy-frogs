@@ -22,6 +22,7 @@
     "vue": "^2.5.2"
   },
   "devDependencies": {
+    "api-ai-javascript": "^2.0.0-beta.21",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",

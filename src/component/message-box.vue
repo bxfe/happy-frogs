@@ -1,6 +1,6 @@
 <template>
   <div class="message-box">
-    <div :class="['line', message.type]" ref="line" v-for="message in messages">
+    <div :class="['line', message.type]" v-for="message in messages">
       <div class="wrapper">
         <div class="content">{{ message.content }}</div>
       </div>
@@ -14,9 +14,10 @@ export default {
   props: {
     messages: Array,
   },
-  updated() {
-    const lines = this.$refs.line
-    lines[lines.length - 1].scrollIntoViewIfNeeded()
+  mounted() {
+    this.$el.addEventListener('animationend', () => {
+      this.$el.scrollTo(0, 0)
+    })
   }
 }
 

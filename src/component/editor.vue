@@ -31,5 +31,7 @@ export default {
   background: transparent;
   outline: none;
   line-height: 3.6em;
+  width: 100%;
+  box-sizing: border-box;
 }
 </style>

@@ -36,7 +36,7 @@
   <div id="app">
     <message-box :messages="messages"></message-box>
     <frog></frog>
-    <editor @submit="submit"></editor>
+    <editor :listening="listening" @submit="submit" @start="listen"></editor>
   </div>
   <script src="dist/build.js"></script>
 </body>

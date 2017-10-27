@@ -9,7 +9,6 @@
 </template>
 
 <script>
-
 export default {
   props: {
     messages: Array,
@@ -20,7 +19,6 @@ export default {
     })
   }
 }
-
 </script>
 
 <style>
@@ -33,6 +31,7 @@ export default {
   }
 }
 .message-box {
+  flex-basis: 0;
   flex-grow: 1;
   display: flex;
   flex-direction: column-reverse;

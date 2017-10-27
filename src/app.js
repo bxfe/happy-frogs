@@ -44,6 +44,7 @@ new Vue({
       this.speak(content)
     },
     speak(content) {
+      if (!window.SpeechSynthesisUtterance) return
       const utterance = new SpeechSynthesisUtterance();
       utterance.text = content;
       window.speechSynthesis.speak(utterance);
@@ -52,6 +53,10 @@ new Vue({
       if (this.recognition) {
         this.recognition.stop()
         this.recognition = null
+        return
+      }
+      if (!window.webkitSpeechRecognition) {
+        this.reply('好可惜，你的设备不支持语音识别哦')
         return
       }
       const recognition = new webkitSpeechRecognition()

@@ -22,7 +22,7 @@ new Vue({
       accessToken: 'b6111438a5f54e6eaa70e72aaab8d380',
       lang: 'zh-CN',
     }),
-    listening: false,
+    recognition: null,
   },
   methods: {
     submit(content) {
@@ -49,16 +49,23 @@ new Vue({
       window.speechSynthesis.speak(utterance);
     },
     listen(callback) {
+      if (this.recognition) {
+        this.recognition.stop()
+        this.recognition = null
+        return
+      }
       const recognition = new webkitSpeechRecognition()
       recognition.lang = 'zh-CN'
+      recognition.onstart = () => {
+        this.recognition = recognition
+      }
       recognition.onresult = event => {
-        this.listening = false
+        this.recognition = null
         const count = event.results.length - 1
         const length = event.results[count].length - 1
         const content = event.results[count][length].transcript
       	this.submit(content)
       }
-      this.listening = true
       recognition.start()
     },
   }

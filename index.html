@@ -36,7 +36,7 @@
 <body>
   <div id="app">
     <message-box :messages="messages"></message-box>
-    <frog></frog>
+    <frog @touch="touch"></frog>
     <editor :listening="!!recognition" :talkative="talkative"
       @submit="submit" @start="listen"></editor>
   </div>

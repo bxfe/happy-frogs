@@ -1,15 +1,9 @@
 import Vue from 'vue'
-import {ApiAiClient} from "api-ai-javascript"
 import Frog from './component/frog'
 import Editor from './component/editor'
 import MessageBox from './component/message-box'
+import {ApiAiClient} from "api-ai-javascript"
 
-
-const client = new ApiAiClient({accessToken: 'b6111438a5f54e6eaa70e72aaab8d380'})
-
-client.textRequest('Hello!')
-    .then((response) => { console.log(response)})
-    .catch((error) => {/* do something here too */})
 new Vue({
   el: '#app',
   components: {
@@ -32,6 +26,10 @@ new Vue({
         content: '你好呀，我是小蛙',
       },
     ],
+    client: new ApiAiClient({
+      accessToken: 'b6111438a5f54e6eaa70e72aaab8d380',
+      lang: 'zh-CN',
+    })
   },
   methods: {
     submit(content) {
@@ -39,10 +37,13 @@ new Vue({
         type: 'user',
         content,
       })
-      this.messages.push({
-        type: 'frog',
-        content,
-      })
+      this.client.textRequest(content)
+        .then(({result}) => {
+          this.messages.push({
+            type: 'frog',
+            content: result.fulfillment.speech,
+          })
+        })
     }
   }
 })

@@ -7,7 +7,7 @@ import MessageBox from './component/message-box'
 
 const client = new ApiAiClient({accessToken: 'b6111438a5f54e6eaa70e72aaab8d380'})
 
-client.textRequest('Hello!')
+client.textRequest('您好!')
     .then((response) => { console.log(response)})
     .catch((error) => {/* do something here too */})
 new Vue({

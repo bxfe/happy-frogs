@@ -5,8 +5,38 @@
   <title>小蛙</title>
   <link rel="shortcut icon" href="//file.baixing.net/201710/24715a6518d581ddd59c21974df63759.png">
   <link rel="apple-touch-icon" href="//file.baixing.net/201710/24715a6518d581ddd59c21974df63759.png">
+  <link rel="stylesheet" href="dist/style.css">
+  <style>
+    html {
+      height: 100%;
+    }
+    body {
+      margin: 0;
+      height: 100%;
+      font-size: 18px;
+    }
+    #app {
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+      max-width: 600px;
+      height: 100%;
+      overflow-x: hidden;
+    }
+    ::-webkit-scrollbar {
+      background: inherit;
+      width: 6px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(170, 170, 170, 0.5);
+    }
+  </style>
 </head>
 <body>
-  <div id="app"></div>
+  <div id="app">
+    <message-box :messages="messages"></message-box>
+    <frog></frog>
+    <editor @submit="submit"></editor>
+  </div>
   <script src="dist/build.js"></script>
 </body>

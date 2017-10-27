@@ -3,7 +3,8 @@
     <div class="input">
       <input class="control" type="text" @keyup.enter="submit">
     </div>
-    <div :class="['voice', {'listening': listening}]" @click="$emit('start')"></div>
+    <div :class="['voice', {'listening': listening}]"
+      @click="$emit('start')" v-if="talkative"></div>
   </div>
 </template>
 
@@ -11,6 +12,7 @@
 export default {
   props: {
     listening: Boolean,
+    talkative: Boolean,
   },
   methods: {
     submit(e) {

@@ -37,7 +37,8 @@
   <div id="app">
     <message-box :messages="messages"></message-box>
     <frog></frog>
-    <editor :listening="!!recognition" @submit="submit" @start="listen"></editor>
+    <editor :listening="!!recognition" :talkative="talkative"
+      @submit="submit" @start="listen"></editor>
   </div>
   <script src="dist/build.js"></script>
 </body>

@@ -38,7 +38,7 @@ new Vue({
           if (messages) {
             for (let message of messages) {
               if (message.type === 4 && message.payload.payload) {
-                speech = message.payload.speech
+                speech = message.payload[speech]
               }
             }
           }

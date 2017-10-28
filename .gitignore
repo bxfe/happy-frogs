@@ -1,9 +1,7 @@
-# jetbrain
+# JetBrain
 .idea/
-
-#lockfile
-package-lock.json
 
 # Node.js
 node_modules
 npm-debug.log
+package-lock.json

@@ -34,20 +34,19 @@ new Vue({
       })
       this.client.textRequest(content)
         .then(({result}) => {
-          const fulfillment = result.fulfillment;
-          let speeh = fulfillment.speech;
-          const messages = fulfillment.messages;
-          for (let message of messages) {
-            if (message['type'] === 4) {
-              if (message['payload']['payload']) {
-                speeh = message['payload'][speeh]
+          let {speech, messages} = result.fulfillment
+          if (messages) {
+            for (let message of messages) {
+              if (message.type === 4 && message.payload.payload) {
+                speech = message.payload.speech
               }
             }
           }
-          this.reply(speeh)
+          this.reply(speech)
         })
     },
     reply(content) {
+      if (!content) return
       this.messages.push({
         type: 'frog',
         content: content,
@@ -86,21 +85,19 @@ new Vue({
       recognition.start()
     },
     touch(position) {
-      console.log(position)
       switch (position) {
-          case 'left':
-            this.reply('别动她')
-            break
-          case 'right':
-            this.reply('怎么可以碰可爱的龟龟')
-            break
-          case 'middle':
-            this.reply('再碰我，以后你的每一分钟都会只有59秒')
-            break
-          case 'head':
-            this.reply('别摸我的头，信不信让你减一秒')
-            break
-          default:
+        case 'left':
+          this.reply('别动她')
+          break
+        case 'right':
+          this.reply('怎么可以碰可爱的龟龟')
+          break
+        case 'middle':
+          this.reply('再碰我，以后你的每一分钟都会只有59秒')
+          break
+        case 'head':
+          this.reply('别摸我的头，信不信让你减一秒')
+          break
       }
     },
   }

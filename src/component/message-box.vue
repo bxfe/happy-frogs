@@ -40,6 +40,7 @@ export default {
 }
 .message-box .line {
   width: 100%;
+  -webkit-animation: expand 0.3s ease;
   animation: expand 0.3s ease;
 }
 .message-box .line.user {

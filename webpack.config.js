@@ -1,6 +1,6 @@
-const path = require('path')
 const webpack = require('webpack')
-const ExtractTextPlugin = require("extract-text-webpack-plugin")
+const path = require('path')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: './src/app.js',
@@ -30,7 +30,10 @@ module.exports = {
     alias: { 'vue': 'vue/dist/vue.js' }
   },
   plugins: [
-    new ExtractTextPlugin("style.css")
+    new ExtractTextPlugin('style.css'),
+    new webpack.DefinePlugin({
+      FROG_MODE: JSON.stringify(process.env.FROG_MODE)
+    })
   ],
   devServer: {
     historyApiFallback: true,

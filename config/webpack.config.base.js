@@ -1,11 +1,11 @@
 const path = require('path')
-const webpack = require('webpack')
-const ExtractTextPlugin = require("extract-text-webpack-plugin")
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: './src/app.js',
   output: {
-    path: path.resolve(__dirname, './server/static/dist'),
+    path: path.resolve(__dirname, '../dist'),
+    publicPath: '/dist/',
     filename: 'build.js'
   },
   module: {
@@ -29,7 +29,7 @@ module.exports = {
     alias: { 'vue': 'vue/dist/vue.js' }
   },
   plugins: [
-    new ExtractTextPlugin("style.css")
+    new ExtractTextPlugin('style.css'),
   ],
   devServer: {
     historyApiFallback: true,

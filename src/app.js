@@ -2,23 +2,25 @@ import Vue from 'vue'
 import Frog from './component/frog'
 import Editor from './component/editor'
 import MessageBox from './component/message-box'
+import axios from 'axios'
 import {ApiAiClient} from "api-ai-javascript"
-import { axios} from 'axios'
-console.log(window.__ENV)
 
-let client  = new ApiAiClient({
+window.axios = axios
+
+let client = new ApiAiClient({
   accessToken: 'b6111438a5f54e6eaa70e72aaab8d380',
   lang: 'zh-CN',
 })
 
-if (window.__ENV == 'product') {
-    client = {}
-    client.textRequest = function(text) {
-      return axios.get(`/textRequest/?text=${text}`)
+if (FROG_MODE === 'server') {
+    client = {
+      textRequest(text) {
+        return axios.get(`/textRequest?text=${text}`)
+          .then(({data}) => Promise.resolve(data))
+      }
     }
 }
 
-
 new Vue({
   el: '#app',
   components: {
@@ -27,57 +29,13 @@ new Vue({
     'message-box': MessageBox,
   },
   data: {
-    messages: [
-      {
-        type: 'frog',
-        content: '你好呀，我是小蛙',
-      },
-      {
-        type: 'user',
-        content: '你好呀，我是小蛙',
-      },
-      {
-        type: 'frog',
-        content: '你好呀，我是小蛙',
-      },
-    ],
-    client: client
-  },
-  methods: {
-    submit(content) {
-      this.messages.push({
-        type: 'user',
-        content,
-      })
-      this.client.textRequest(content)
-        .then(({result}) => {
-          this.messages.push({
-            type: 'frog',
-            content: result.fulfillment.speech,
-          })
-        })
-    }
-  }
-})
-
-new Vue({
-  el: '#app',
-  components: {
-    'frog': Frog,
-    'editor': Editor,
-    'message-box': MessageBox,
-  },
-  data: {
+    client,
     messages: [
       {
         type: 'frog',
         content: '你好呀，我是小蛙',
       },
     ],
-    client: new ApiAiClient({
-      accessToken: 'b6111438a5f54e6eaa70e72aaab8d380',
-      lang: 'zh-CN',
-    }),
     recognition: null,
     talkative: true,
   },

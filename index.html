@@ -2,6 +2,9 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <title>小蛙</title>
   <link rel="shortcut icon" href="//file.baixing.net/201710/24715a6518d581ddd59c21974df63759.png">
   <link rel="apple-touch-icon" href="//file.baixing.net/201710/24715a6518d581ddd59c21974df63759.png">
@@ -12,8 +15,12 @@
     }
     body {
       margin: 0;
+      position: fixed;
+      width: 100%;
       height: 100%;
-      font-size: 18px;
+      font-size: 16px;
+      font-family: sans-serif;
+      -webkit-overflow-scrolling: touch;
     }
     #app {
       display: flex;
@@ -22,6 +29,7 @@
       max-width: 600px;
       height: 100%;
       overflow-x: hidden;
+      background: #fff;
     }
     ::-webkit-scrollbar {
       background: inherit;
@@ -35,8 +43,9 @@
 <body>
   <div id="app">
     <message-box :messages="messages"></message-box>
-    <frog></frog>
-    <editor @submit="submit"></editor>
+    <frog @touch="touch"></frog>
+    <editor :listening="!!recognition" :talkative="talkative"
+      @submit="submit" @start="listen"></editor>
   </div>
   <script src="dist/build.js"></script>
 </body>

@@ -59,7 +59,7 @@ new Vue({
         speechSynthesis.cancel()
       }
       const utterance = new SpeechSynthesisUtterance(content)
-      utterance.pitch = 2 // highest
+      utterance.pitch = 1.5
       speechSynthesis.speak(utterance)
     },
     listen(callback) {

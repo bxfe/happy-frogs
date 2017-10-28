@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --inline --hot --host 0.0.0.0",
-    "server": "nodemon server/main.js",
+    "server": "npm run build-server && nodemon server/main.js",
     "build-static": "cross-env FROG_MODE=static webpack --progress",
     "build-server": "cross-env FROG_MODE=server webpack --progress"
   },

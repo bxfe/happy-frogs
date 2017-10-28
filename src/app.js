@@ -14,9 +14,14 @@ let client = new ApiAiClient({
 
 if (FROG_MODE === 'server') {
     client = {
+      sessionId: null,
       textRequest(text) {
-        return axios.get(`/textRequest?text=${text}`)
-          .then(({data}) => Promise.resolve(data))
+        return axios.get('/textRequest', {
+          params: {text, session: this.sessionId}
+        }).then(({data}) => {
+          this.sessionId = data.sessionId
+          return Promise.resolve(data)
+        })
       }
     }
 }

@@ -12,10 +12,10 @@ const app = apiai(TOKEN, {
     language: 'zh-CN'
 });
 
-function textRequestPromise(text) {
+function textRequestPromise(text, session) {
     return new Promise((resolve, reject) => {
         const request = app.textRequest(text, {
-            sessionId: uuidv4()
+            sessionId: session || uuidv4()
         })
         request.on('response', resolve)
         request.on('error', reject)
@@ -25,7 +25,8 @@ function textRequestPromise(text) {
 
 fastifyInstance.get('/textRequest', function(request, reply) {
     const text = request.query.text
-    const res = textRequestPromise(text)
+    const session = request.query.session
+    const res = textRequestPromise(text, session)
     reply.type('application/json').send(res)
 })
 

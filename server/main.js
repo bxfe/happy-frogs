@@ -29,7 +29,7 @@ fastifyInstance.get('/textRequest', function(request, reply) {
     reply.type('application/json').send(res)
 })
 
-fastifyInstance.listen(3000, function (err) {
+fastifyInstance.listen(80, function (err) {
   if (err) throw err
   console.log(`server listening on ${fastifyInstance.server.address().port}`)
 })

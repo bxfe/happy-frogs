@@ -14,6 +14,9 @@ export default {
   },
   methods: {
     touch(e) {
+      if (speechSynthesis.speaking) {
+        return speechSynthesis.cancel()
+      }
       const X = e.offsetX
       const Y = e.offsetY
       if (Y < 110 || Y > 150) {

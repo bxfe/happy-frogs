@@ -52,7 +52,7 @@ export default {
 }
 .message-box .content {
   position: relative;
-  padding: 1em;
+  padding: 0.8em;
   border-radius: 8px;
   background: #ec7a79;
   color: #fff;

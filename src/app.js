@@ -69,12 +69,14 @@ new Vue({
         this.recognition = null
         return
       }
-      if (!window.webkitSpeechRecognition) {
+      const SpeechRecognition = window.SpeechRecognition
+        || window.webkitSpeechRecognition
+      if (!SpeechRecognition) {
         this.reply('好可惜，你的设备不支持语音识别哦')
         this.talkative = false
         return
       }
-      const recognition = new webkitSpeechRecognition()
+      const recognition = new SpeechRecognition()
       recognition.lang = 'zh-CN'
       recognition.onstart = () => {
         this.recognition = recognition

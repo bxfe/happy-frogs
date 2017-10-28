@@ -1,7 +1,7 @@
 <template>
   <div class="editor">
     <div class="input">
-      <input class="control" type="text" @keyup.enter="submit">
+      <input class="control" type="text" ref="control" @keyup.enter="submit">
     </div>
     <div :class="['voice', {'listening': listening}]"
       @click="$emit('start')" v-if="talkative"></div>
@@ -20,6 +20,14 @@ export default {
       e.target.value = ''
       this.$emit('submit', value)
     }
+  },
+  mounted() {
+    const {control} = this.$refs
+    control.addEventListener('focus', () => {
+      setTimeout(() => {
+        control.scrollIntoViewIfNeeded()
+      }, 200)
+    })
   }
 }
 </script>

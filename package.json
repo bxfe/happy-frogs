@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --inline --hot --host 0.0.0.0",
-    "build": "webpack --progress"
+    "build": "webpack --progress",
+    "server": "nodemon src/server/main.js"
   },
   "repository": {
     "type": "git",
@@ -24,10 +25,16 @@
     "babel-preset-env": "^1.6.1",
     "css-loader": "^0.28.7",
     "extract-text-webpack-plugin": "^3.0.2",
+    "nodemon": "^1.12.1",
     "vue": "^2.5.2",
     "vue-loader": "^13.3.0",
     "vue-template-compiler": "^2.5.2",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.3"
+  },
+  "dependencies": {
+    "apiai": "^4.0.3",
+    "fastify": "^0.30.3",
+    "uuid": "^3.1.0"
   }
 }

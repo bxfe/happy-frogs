@@ -1,7 +1,8 @@
 <template>
   <div class="editor">
     <div class="input">
-      <input class="control" type="text" ref="control" @keyup.enter="submit">
+      <input class="control" type="text" placeholder="小蛙有什么可以帮您的？"
+        ref="control" @keyup.enter="submit">
     </div>
     <div :class="['voice', {'listening': listening}]"
       @click="$emit('start')" v-if="talkative"></div>

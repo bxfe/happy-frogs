@@ -2,7 +2,24 @@ import Vue from 'vue'
 import Frog from './component/frog'
 import Editor from './component/editor'
 import MessageBox from './component/message-box'
+import axios from 'axios'
 import {ApiAiClient} from "api-ai-javascript"
+
+window.axios = axios
+
+let client = new ApiAiClient({
+  accessToken: 'b6111438a5f54e6eaa70e72aaab8d380',
+  lang: 'zh-CN',
+})
+
+if (FROG_MODE === 'server') {
+    client = {
+      textRequest(text) {
+        return axios.get(`/textRequest?text=${text}`)
+          .then(({data}) => Promise.resolve(data))
+      }
+    }
+}
 
 new Vue({
   el: '#app',
@@ -12,16 +29,13 @@ new Vue({
     'message-box': MessageBox,
   },
   data: {
+    client,
     messages: [
       {
         type: 'frog',
         content: '你好呀，我是小蛙',
       },
     ],
-    client: new ApiAiClient({
-      accessToken: 'b6111438a5f54e6eaa70e72aaab8d380',
-      lang: 'zh-CN',
-    }),
     recognition: null,
     talkative: true,
   },

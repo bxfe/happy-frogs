@@ -59,7 +59,8 @@ new Vue({
         speechSynthesis.cancel()
       }
       const utterance = new SpeechSynthesisUtterance(content)
-      utterance.pitch = 1.5
+      utterance.rate = 1.2
+      utterance.pitch = 1.2
       speechSynthesis.speak(utterance)
     },
     listen(callback) {

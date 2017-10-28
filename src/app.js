@@ -55,10 +55,11 @@ new Vue({
     },
     speak(content) {
       if (!window.SpeechSynthesisUtterance) return
-      if (speechSynthesis.speaking) {
-        speechSynthesis.cancel()
-      }
       const utterance = new SpeechSynthesisUtterance(content)
+      utterance.rate = 1.15
+      utterance.voice = speechSynthesis.getVoices()
+        .filter(voice => voice.lang === 'zh-CN')
+        .find(item => item.name.includes('Google'))
       speechSynthesis.speak(utterance)
     },
     listen(callback) {
@@ -104,5 +105,8 @@ new Vue({
           break
       }
     },
+  },
+  created() {
+    this.speak('')
   }
 })

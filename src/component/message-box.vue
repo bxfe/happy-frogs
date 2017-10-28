@@ -67,6 +67,7 @@ export default {
   border: 0.5em solid transparent;
   border-left-color: #ec7a79;
   border-top-width: 0;
+  border-right-width: 0;
   bottom: -0.5em;
   right: 50%;
 }
@@ -75,6 +76,7 @@ export default {
 }
 .message-box .user .content::before {
   border: 0.5em solid transparent;
+  border-left-width: 0;
   border-right-color: #c3d96a;
   left: 50%;
 }

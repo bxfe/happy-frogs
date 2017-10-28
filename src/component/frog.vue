@@ -7,20 +7,30 @@
 
 <script>
 export default {
+  data() {
+    return {
+      recent: null,
+    }
+  },
   methods: {
     touch(e) {
       const X = e.offsetX
       const Y = e.offsetY
       if (Y < 110 || Y > 150) {
-				this.$emit('touch', 'head')
+				this.trigger('head')
       } else if (X > 10 && X < 60) {
-				this.$emit('touch', 'left')
+				this.trigger('left')
       } else if (X > 140 && X < 186) {
-				this.$emit('touch', 'right')
+				this.trigger('right')
       } else {
-				this.$emit('touch', 'middle')
+				this.trigger('middle')
       }
-    }
+    },
+    trigger(position) {
+      if (position === this.recent) return
+      this.recent = position
+      this.$emit('touch', position)
+    },
   }
 }
 </script>

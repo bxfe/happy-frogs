@@ -55,9 +55,13 @@ new Vue({
     },
     speak(content) {
       if (!window.SpeechSynthesisUtterance) return
-      const utterance = new SpeechSynthesisUtterance();
-      utterance.text = content;
-      window.speechSynthesis.speak(utterance);
+      if (speechSynthesis.speaking) {
+        speechSynthesis.cancel()
+      }
+      const utterance = new SpeechSynthesisUtterance(content)
+      utterance.rate = 1.5
+      utterance.pitch = 2 // highest
+      speechSynthesis.speak(utterance)
     },
     listen(callback) {
       if (this.recognition) {
